@@ -6,9 +6,10 @@ import {
   Link
 } from "react-router-dom";
 
-import Home from './Home';
-import About from './About';
-import SignIn from './SignIn';
+import Home from './components/Home';
+import About from './components/About';
+import List from './components/List';
+import SignIn from './components/SignIn';
 import './App.css';
 
 export default function App() {
@@ -22,6 +23,9 @@ export default function App() {
                 <Link className="App-link" to="/">Home</Link>
               </li>
               <li>
+                <Link className="App-link" to="/list">List</Link>
+              </li>
+              <li>
                 <Link className="App-link" to="/about">About</Link>
               </li>
             </ul>
@@ -33,6 +37,9 @@ export default function App() {
         <Switch>
           <Route path="/about">
             <About />
+          </Route>
+          <Route path="/list">
+            <List />
           </Route>
           <Route path="/sign-in">
             <SignIn />

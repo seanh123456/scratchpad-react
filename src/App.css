@@ -79,6 +79,10 @@ nav a {
   color: #61dafb;
 }
 
+.App-link:hover {
+  color: #e38710;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
