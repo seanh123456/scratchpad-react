@@ -1,3 +1,57 @@
+body {
+  background-color: #282c34;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  min-width:1060px;
+}
+
+nav {
+  background-color: #16181c;
+  height: 53px;
+	margin:0;
+	padding:5px;
+}
+
+nav ul {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+	display:inline;
+  height: 43px;
+	padding:0;
+	margin:0;
+  margin-right:20px;
+}
+
+nav li:last-child {
+  margin-right:0px;
+}
+
+nav .nav-right {
+  float: right;
+  line-height: 43px;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+.wrapper {
+  width: 860px;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  overflow: hidden;
+}
+
+.wrapper.no-pad {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 .App {
   text-align: center;
 }
@@ -14,14 +68,11 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {

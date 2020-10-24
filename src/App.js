@@ -1,54 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+import Home from './Home';
+import About from './About';
+import SignIn from './SignIn';
 import './App.css';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      message: "Hello React World!"
-    };
-  }
-
-  componentDidMount() {
-    fetch("/api")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          console.log("result: " + result);
-          this.setState({
-            isLoaded: true,
-            message: result.message
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
-  }
-
-  render() {
-    const { error, isLoaded, message } = this.state;
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
-      return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>{message}</p>
-          </header>
-        </div>
-      );
-    }
-  }
-}
-
-export default App;
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <nav>
+          <div className="wrapper no-pad">
+            <ul>
+              <li>
+                <Link className="App-link" to="/">Home</Link>
+              </li>
+              <li>
+                <Link className="App-link" to="/about">About</Link>
+              </li>
+            </ul>
+            <div className="nav-right">
+              <Link className="App-link" to="/sign-in">Sign in</Link>
+            </div>
+          </div>
+        </nav>
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/sign-in">
+            <SignIn />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+};
