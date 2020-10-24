@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import Home from './components/Home';
-import About from './components/About';
+import Counter from './components/Counter';
 import List from './components/List';
 import SignIn from './components/SignIn';
 import './App.css';
@@ -26,7 +26,7 @@ export default function App() {
                 <Link className="App-link" to="/list">List</Link>
               </li>
               <li>
-                <Link className="App-link" to="/about">About</Link>
+                <Link className="App-link" to="/counter">Counter</Link>
               </li>
             </ul>
             <div className="nav-right">
@@ -35,8 +35,8 @@ export default function App() {
           </div>
         </nav>
         <Switch>
-          <Route path="/about">
-            <About />
+          <Route path="/counter">
+            <Counter />
           </Route>
           <Route path="/list">
             <List />
