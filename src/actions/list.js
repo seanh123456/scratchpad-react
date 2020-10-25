@@ -15,6 +15,12 @@ export const toggleTodo = id => ({
   id
 })
 
+export const renameTodo = ( id, text ) => ({
+  type: 'RENAME_TODO',
+  text,
+  id
+})
+
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
   SHOW_COMPLETED: 'SHOW_COMPLETED',
