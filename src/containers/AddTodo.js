@@ -7,19 +7,24 @@ const AddTodo = ({ dispatch }) => {
 
   return (
     <div>
-      <form
-        onSubmit={e => {
-          e.preventDefault()
+      Add todo: <input
+        autoFocus
+        ref={node => (input = node)}
+        onKeyPress={ event =>  {
+            if (event.key !== "Enter" || !input.value.trim()) {
+              return
+            }
+            dispatch(addTodo(input.value))
+            input.value = ''
+          }}
+        onBlur={() => {
           if (!input.value.trim()) {
             return
           }
           dispatch(addTodo(input.value))
           input.value = ''
         }}
-      >
-        <input ref={node => (input = node)} />
-        <button type="submit">Add Todo</button>
-      </form>
+       />
     </div>
   )
 }

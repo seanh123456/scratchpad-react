@@ -3,32 +3,48 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { renameTodo } from '../../actions/list'
 
-const Todo = ({ onClick, completed, text, dispatch, todoid }) => {
+const Todo = ({ checkTodo, clickTodo, editing, completed, text, dispatch, todoid }) => {
 
   let input
-  return (
-    <li>
-      <div
-        onClick={onClick}
+  let todoText
+
+  if (!editing) {
+    todoText =
+      <span
+        onClick={clickTodo}
         style={{
           textDecoration: completed ? 'line-through' : 'none'
         }}
       >
-      {text}
-      </div>
-      <form
-        onSubmit={e => {
-          e.preventDefault()
+        {text}
+      </span>
+  } else {
+    todoText =
+      <input
+        autoFocus
+        className="rename"
+        ref={node => (input = node)}
+        defaultValue={text}
+        onKeyPress={event => {
+          if (event.key !== "Enter" || !input.value.trim()) {
+            return
+          }
+          dispatch(renameTodo(todoid, input.value))
+          input.value = ''
+        }}
+        onBlur={() => {
           if (!input.value.trim()) {
             return
           }
           dispatch(renameTodo(todoid, input.value))
           input.value = ''
         }}
-      >
-        <input ref={node => (input = node)} />
-        <button type="submit">Rename</button>
-      </form>
+      />
+  }
+  return (
+    <li>
+      <input type="checkbox" onClick={checkTodo} checked={completed}/>
+      {todoText}
     </li>
   )
 }
@@ -36,6 +52,7 @@ const Todo = ({ onClick, completed, text, dispatch, todoid }) => {
 Todo.propTypes = {
   onClick: PropTypes.func.isRequired,
   completed: PropTypes.bool.isRequired,
+  editing: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired
 }
 

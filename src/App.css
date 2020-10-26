@@ -94,3 +94,22 @@ nav a {
     transform: rotate(360deg);
   }
 }
+
+.todo li {
+  list-style: none;
+  display: block;
+  width: 400px;
+}
+
+.todo li input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+}
+
+.todo li *:not(:last-child) {
+  margin-right: 5px;
+}
+
+input {
+  font-size: calc(10px + 2vmin);
+}

@@ -15,6 +15,11 @@ export const toggleTodo = id => ({
   id
 })
 
+export const toggleEdit = id => ({
+  type: 'TOGGLE_EDIT',
+  id
+})
+
 export const renameTodo = ( id, text ) => ({
   type: 'RENAME_TODO',
   text,
