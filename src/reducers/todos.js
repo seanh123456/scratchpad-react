@@ -15,7 +15,7 @@ const todos = (state = initialState, action) => {
       return state.map(todo =>
         todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
       )
-    case 'TOGGLE_EDIT':
+    case 'EDIT_TODO':
       return state.map(todo =>
         todo.id === action.id ? { ...todo, editing: true } : todo
       )

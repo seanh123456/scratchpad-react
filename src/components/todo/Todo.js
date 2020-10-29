@@ -50,10 +50,13 @@ const Todo = ({ checkTodo, clickTodo, editing, completed, text, dispatch, todoid
 }
 
 Todo.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  checkTodo: PropTypes.func.isRequired,
+  clickTodo: PropTypes.func.isRequired,
   completed: PropTypes.bool.isRequired,
   editing: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  todoid: PropTypes.number.isRequired
 }
 
 export default connect()(Todo)
