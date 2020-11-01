@@ -1,41 +1,41 @@
-import React from 'react';
+import axios from 'axios'
+import React from 'react'
+import AuthenticationService from '../service/AuthenticationService';
 
-import logo from '../logo.svg';
+import logo from '../logo.svg'
 
 class Home extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       error: null,
       isLoaded: false,
       message: "Hello React World!"
-    };
+    }
   }
 
   componentDidMount() {
-    fetch("/api")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          console.log("result: " + result);
-          this.setState({
-            isLoaded: true,
-            message: result.message
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+    axios.get('/api/')
+      .then(response => {
+        console.log(response)
+        this.setState({
+          isLoaded: true,
+          message: response.data.message
+        })
+      })
+      .catch(error => {
+        console.log("error: " + error)
+        this.setState({
+          isLoaded: true,
+          error
+        })
+      })
   }
 
   render() {
-    const { error, isLoaded, message } = this.state;
+    const { error, isLoaded, message } = this.state
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <div>Error: {error.message}</div>
     } else if (!isLoaded) {
       return (
         <section className="wrapper">
@@ -43,7 +43,7 @@ class Home extends React.Component {
             <p>Loading...</p>
           </header>
         </section>
-      );
+      )
     } else {
       return (
         <section className="hero wrapper">
@@ -52,9 +52,9 @@ class Home extends React.Component {
             <p>{message}</p>
           </header>
         </section>
-      );
+      )
     }
   }
 }
 
-export default Home;
+export default Home

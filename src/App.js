@@ -10,9 +10,14 @@ import Home from './components/Home';
 import Counter from './components/Counter';
 import List from './components/List';
 import SignIn from './components/SignIn';
+import LoginComponent from './components/Login'
+import LogoutComponent from './components/Logout'
+import AuthenticatedRoute from './components/AuthenticatedRoute';
+import AuthenticationService from './service/AuthenticationService';
 import './App.css';
 
 export default function App() {
+  let logged = !AuthenticationService.isUserLoggedIn() ? <Link className="App-link" to="/sign-in">Sign in</Link> : <Link className="App-link" onClick={AuthenticationService.logout} to="/logout">Sign out</Link>
   return (
     <Router>
       <div>
@@ -30,7 +35,7 @@ export default function App() {
               </li>
             </ul>
             <div className="nav-right">
-              <Link className="App-link" to="/sign-in">Sign in</Link>
+              {logged}
             </div>
           </div>
         </nav>
@@ -41,9 +46,9 @@ export default function App() {
           <Route path="/list">
             <List />
           </Route>
-          <Route path="/sign-in">
-            <SignIn />
-          </Route>
+          <Route path="/login" exact component={LoginComponent} />
+          <AuthenticatedRoute path="/logout" exact component={LogoutComponent} />
+          <AuthenticatedRoute path="/sign-in" exact component={SignIn} />
           <Route path="/">
             <Home />
           </Route>
